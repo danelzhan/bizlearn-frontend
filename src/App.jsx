@@ -89,7 +89,7 @@ function App() {
       {isAuthenticated ? <div/> : <Navigate to="/login" replace />}
       <Header />
         <Routes>
-          <Route path="/" element={<CoursesPage courses={demoCourse} percentage={percentage} />} />
+          <Route path={["/", "/authenticated"]} element={<CoursesPage courses={demoCourse} percentage={percentage} />} />
           <Route path="/course/:slug" element={<CoursePage percentage={percentage} />} />
           <Route path="/course/:slug/lesson/:id" element={<LessonPage userData={userData} setUserData={setUserData} />} />
           <Route path="/login" element={<LoginPage />} />
