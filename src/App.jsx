@@ -87,26 +87,18 @@ function App() {
       
       <Router>
       <Header />
-        {isAuthenticated ?
-          <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/authenticated" element={<LoginPage />} />
-            <Route path="/course/:slug" element={<LoginPage />} />
-            <Route path="/course/:slug/lesson/:id" element={<LoginPage />}/>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/logout" element={<LoginPage />} />
-            <Route path="/profile" element={<LoginPage />}/>
-          </Routes>:
-          <Routes>
+        <Routes>
+          {isAuthenticated ?
             <Route path="/" element={<CoursesPage courses={demoCourse} percentage={percentage} />} /> :
-            <Route path="/authenticated" element={<CoursesPage courses={demoCourse} percentage={percentage} />} />
-            <Route path="/course/:slug" element={<CoursePage percentage={percentage} />} />
-            <Route path="/course/:slug/lesson/:id" element={<LessonPage userData={userData} setUserData={setUserData} />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/logout" element={<LogoutPage />} />
-            <Route path="/profile" element={<ProfilePage user={userData} userData={userData} setUserData={setUserData} />} />
-          </Routes>
-        }
+            <Route path="/" element={<LoginPage />} />
+          }
+          <Route path="/authenticated" element={<CoursesPage courses={demoCourse} percentage={percentage} />} />
+          <Route path="/course/:slug" element={<CoursePage percentage={percentage} />} />
+          <Route path="/course/:slug/lesson/:id" element={<LessonPage userData={userData} setUserData={setUserData} />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/logout" element={<LogoutPage />} />
+          <Route path="/profile" element={<ProfilePage user={userData} userData={userData} setUserData={setUserData} />} />
+        </Routes>
       </Router>
     </>
   )
