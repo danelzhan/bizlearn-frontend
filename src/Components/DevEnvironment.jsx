@@ -5,7 +5,7 @@ import Editor from "@monaco-editor/react";
 
 export function DevEnvironment({ inputHTML, inputCSS, inputJS, setHTML, setCSS, setJS, email }) {
 
-  const BRIDGE_URL = 'http://localhost:5000' || "http://127.0.0.1:5000";
+  const BRIDGE_URL = 'https://bizlearn-backend.onrender.com';
 
   const normalize = s =>
     String(s).replace(/\r\n/g, '\n').replace(/\\n/g, '\n'); 

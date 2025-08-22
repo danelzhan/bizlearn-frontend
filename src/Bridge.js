@@ -1,6 +1,6 @@
  import { Course } from "./Objects.js"
 
-const BRIDGE_URL = 'http://localhost:5000' || "http://127.0.0.1:5000";
+const BRIDGE_URL = 'https://bizlearn-backend.onrender.com';
 
 export async function fetchCourseBySlug(slug) {
     const response = await fetch(`${BRIDGE_URL}/api/courses/${encodeURIComponent(slug)}`);
