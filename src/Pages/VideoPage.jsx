@@ -12,7 +12,7 @@ export function VideoPage({lesson, userData, setUserData}) {
     const width = 75
 
     function submitLesson() {
-        const BRIDGE_URL = 'http://localhost:5000' || "http://127.0.0.1:5000";
+        const BRIDGE_URL = 'https://bizlearn-backend.onrender.com';
         if (userData.courses_enrolled[0].lessons_completed.some(l => l.id == lesson.id)) {
             return;
         }   

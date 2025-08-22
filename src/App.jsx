@@ -20,7 +20,7 @@ function App() {
   const [demoCourse, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   const { user, isAuthenticated } = useAuth0();
-  const BRIDGE_URL = 'http://localhost:5000';
+  const BRIDGE_URL = 'https://bizlearn-backend.onrender.com';
 
   useEffect(() => {
     const cached = localStorage.getItem("demoCourse");

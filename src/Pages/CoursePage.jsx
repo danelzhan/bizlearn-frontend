@@ -6,7 +6,7 @@ import { fetchCourseBySlug } from "../Bridge";
 import { useParams, Link} from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const BRIDGE_URL = 'http://localhost:5000' || "http://127.0.0.1:5000";
+const BRIDGE_URL = 'https://bizlearn-backend.onrender.com';
 
 export function CoursePage({percentage, userData, setUserData}) {
 

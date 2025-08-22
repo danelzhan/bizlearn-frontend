@@ -13,7 +13,7 @@ export function EditorPage({lesson, userData, setUserData}) {
   const [js, setJS] = useState(lesson.default_js);
 
   function submitLesson() {
-        const BRIDGE_URL = 'http://localhost:5000' || "http://127.0.0.1:5000";
+        const BRIDGE_URL = 'https://bizlearn-backend.onrender.com';
         if (userData.courses_enrolled[0].lessons_completed.some(l => l.id == lesson.id)) {
             return;
         }   

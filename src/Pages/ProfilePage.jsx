@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { LogoutButton } from "../Components/LogoutButton";
 
 export function ProfilePage ({user, userData, setUserData}) {
-    const BRIDGE_URL = 'http://localhost:5000';
+    const BRIDGE_URL = 'https://bizlearn-backend.onrender.com';
     useEffect(() => {
         if (user)
         fetch(`${BRIDGE_URL}/api/users/${user.email}`)

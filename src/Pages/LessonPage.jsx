@@ -6,7 +6,7 @@ import { VideoPage } from "./VideoPage";
 
 export function LessonPage({userData, setUserData}) {
 
-    const BRIDGE_URL = 'http://localhost:5000' || "http://127.0.0.1:5000";
+    const BRIDGE_URL = 'https://bizlearn-backend.onrender.com';
     const { slug, id } = useParams();
     const [lesson, setLesson] = useState(null);
     
