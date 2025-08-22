@@ -4,10 +4,13 @@ import { LoginButton } from "../Components/LoginButton"
 
 export function LoginPage({isAuthenticated}) {
 
-  <Navigate to="/" replace />
+  if (isAuthenticated) {
+    <Navigate to="/" replace />
+  }
 
   return (
     <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "40rem"}}>
+      {!isAuthenticated ? <div /> : <Navigate to="/login" replace />}
       
       <LoginButton />
       
