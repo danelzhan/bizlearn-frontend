@@ -6,7 +6,6 @@ export function LoginPage() {
 
   return (
     <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "40rem"}}>
-      {!isAuthenticated ? <div /> : <Navigate to="/login" replace />}
       
       <LoginButton />
       
