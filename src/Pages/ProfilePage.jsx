@@ -1,0 +1,25 @@
+import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect, useState } from "react";
+import { LogoutButton } from "../Components/LogoutButton";
+
+export function ProfilePage ({user, userData, setUserData}) {
+    const BRIDGE_URL = 'http://localhost:5000';
+    useEffect(() => {
+        if (user)
+        fetch(`${BRIDGE_URL}/api/users/${user.email}`)
+            .then(res => res.json())
+            .then(data => setUserData(data));
+    }, []);
+
+    return (
+        userData ? 
+        <div>
+            <h2>{userData.name}</h2>
+            <p>{userData.email}</p>
+            <p>{userData ? userData.points : ""}</p>
+            <LogoutButton />
+        </div> :
+        <p>loading...</p>
+    );
+}
