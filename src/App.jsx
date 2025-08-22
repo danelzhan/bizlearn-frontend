@@ -85,7 +85,7 @@ function App() {
   return (
     <>
       
-      <Router basename="/BizLearn">
+      <Router>
       {isAuthenticated ? <div/> : <Navigate to="/login" replace />}
       <Header />
         <Routes>
