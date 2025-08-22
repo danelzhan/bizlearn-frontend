@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, Navigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import './App.css'
@@ -21,6 +21,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const { user, isAuthenticated } = useAuth0();
   const BRIDGE_URL = 'https://bizlearn-backend.onrender.com';
+  const { params } = useParams();
 
   useEffect(() => {
     const cached = localStorage.getItem("demoCourse");
@@ -86,7 +87,7 @@ function App() {
     <>
       
       <Router>
-      {isAuthenticated ? <div/> : <Navigate to="/login" replace />}
+      {isAuthenticated && params != "authenticated" ? <div/> : <Navigate to="/login" replace />}
       <Header />
         <Routes>
           <Route path={["/", "/authenticated"]} element={<CoursesPage courses={demoCourse} percentage={percentage} />} />
