@@ -1,8 +1,10 @@
 import { CoursePanel } from '../Components/CoursePanel'
-import { Link, useLocation } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 import { LoginButton } from "../Components/LoginButton"
 
-export function LoginPage() {
+export function LoginPage({isAuthenticated}) {
+
+  <Navigate to="/" replace />
 
   return (
     <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "40rem"}}>

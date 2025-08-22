@@ -81,20 +81,19 @@ function App() {
   }
 
   var percentage = (userData != null && userData.error == null) ? (userData.courses_enrolled[0].lessons_completed.length / demoCourse.lessons.length) * 100 : 0
-  console.log(percentage)
 
   return (
     <>
       
       <Router>
-      {isAuthenticated && params != "authenticated" ? <div/> : <Navigate to="/login" replace />}
+      {isAuthenticated ? <div/> : <Navigate to="/login" replace />}
       <Header />
         <Routes>
           <Route path="/" element={<CoursesPage courses={demoCourse} percentage={percentage} />} />
           <Route path="/authenticated" element={<CoursesPage courses={demoCourse} percentage={percentage} />} />
           <Route path="/course/:slug" element={<CoursePage percentage={percentage} />} />
           <Route path="/course/:slug/lesson/:id" element={<LessonPage userData={userData} setUserData={setUserData} />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage isAuthenticated={isAuthenticated} />} />
           <Route path="/logout" element={<LogoutPage />} />
           <Route path="/profile" element={<ProfilePage user={userData} userData={userData} setUserData={setUserData} />} />
         </Routes>
