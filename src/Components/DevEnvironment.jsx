@@ -10,14 +10,12 @@ export function DevEnvironment({ inputHTML, inputCSS, inputJS, setHTML, setCSS, 
   const normalize = s =>
     String(s).replace(/\r\n/g, '\n').replace(/\\n/g, '\n'); 
 
-  const defaultHTML = inputHTML
-  const defaultCSS = inputCSS
-  const defaultJS = inputJS
+  const html = normalize(inputHTML)
+  const css = normalize(inputCSS)
+  const js = normalize(inputJS)
 
   const [activeTab, setActiveTab] = useState("html");
-  const [html, setHtml] = useState(normalize(defaultHTML));
-  const [css, setCss] = useState(normalize(defaultCSS));
-  const [js, setJs] = useState(normalize(defaultJS));
+  const [loading, setLoading] = useState(true)
   const iframeRef = useRef(null);
   
 
@@ -49,10 +47,10 @@ export function DevEnvironment({ inputHTML, inputCSS, inputJS, setHTML, setCSS, 
 
   useEffect(() => {
     const timeout = setTimeout(() => {
+          setLoading(true)
       if (iframeRef.current) {
         iframeRef.current.srcdoc = generateSrcDoc();
       }
-
       const codeData = { html, css, js };
       localStorage.setItem("savedCode", JSON.stringify(codeData));
       setHTML(html)
@@ -103,7 +101,7 @@ export function DevEnvironment({ inputHTML, inputCSS, inputJS, setHTML, setCSS, 
             <Editor
             defaultLanguage="html"
             value={html}
-            onChange={v => setHtml(v)}
+            onChange={v => setHTML(v)}
             {...commonProps}
             />
         );
@@ -112,7 +110,7 @@ export function DevEnvironment({ inputHTML, inputCSS, inputJS, setHTML, setCSS, 
             <Editor
             defaultLanguage="css"
             value={css}
-            onChange={v => setCss(v)}
+            onChange={v => setCSS(v)}
             {...commonProps}
             />
         );
@@ -121,7 +119,7 @@ export function DevEnvironment({ inputHTML, inputCSS, inputJS, setHTML, setCSS, 
             <Editor
             defaultLanguage="javascript"
             value={js}
-            onChange={v => setJs(v)}
+            onChange={v => setJS(v)}
             {...commonProps}
             />
         );
@@ -157,12 +155,14 @@ export function DevEnvironment({ inputHTML, inputCSS, inputJS, setHTML, setCSS, 
       </div>
 
       {/* Right: Live Preview */}
-      <div style={{ width: "34rem", height: "100%", borderRadius: "1rem", overflow: "hidden", margin: "1rem", marginLeft: "0" }}>
+      <div style={{ width: "34rem", height: "100%", borderRadius: "1rem", overflow: "hidden", margin: "1rem", marginLeft: "0", backgroundColor: backgroundColor}}>
+        
         <iframe
           ref={iframeRef}
           sandbox="allow-scripts"
           title="Live Preview"
           style={{ width: "100%", height: "100%", border: "none" }}
+          onLoad={() => setLoading(false)}
         />
       </div>
     </div>

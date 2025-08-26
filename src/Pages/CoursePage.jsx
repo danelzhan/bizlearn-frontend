@@ -30,12 +30,14 @@ export function CoursePage({percentage, userData, setUserData}) {
             <div style={{width: width + "rem"}}>
                 <div style={{display: "flex", justifyContent: "space-between", width: "74.5rem", margin: "0.5rem"}}>
                     <p className={"page_title"} >{course.title}</p>
-                    <BackButton />
+                    <BackButton prev_url={"/"} />
                 </div>
                 <div style={{borderRadius: "1rem", overflow: "hidden", backgroundColor: "#172037", height: "40rem"}}>
                     <ProgressBar percentage={percentage} height={1} width={width} />
                     {course.lessons.map((lesson, index) => (
-                        <Link key={index} to={`/course/${slug}/lesson/${lesson.id}`}><LessonPanel title={lesson.title} description={lesson.description} /></Link>
+                        userData.courses_enrolled[0].lessons_completed.some(l => l.id == lesson.id) ?
+                        <Link key={index} to={`/course/${slug}/lesson/${lesson.id}`}><LessonPanel title={lesson.title} description={lesson.description} completed={true} /></Link> :
+                        <Link key={index} to={`/course/${slug}/lesson/${lesson.id}`}><LessonPanel title={lesson.title} description={lesson.description} completed={false} /></Link>
                     ))}
                 </div>
             </div>

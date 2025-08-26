@@ -11,6 +11,7 @@ export function CoursePanel({course, percentage}) {
             height: "18rem",
             borderRadius: "0.7rem",
             overflow: "hidden"
+            
             }}>
             <ProgressBar percentage={percentage} width={30} height={1} />
             <div style={{overflow: "hidden", width: "100%", 

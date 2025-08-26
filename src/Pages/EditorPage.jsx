@@ -3,7 +3,7 @@ import { BackButton } from "../Components/BackButton"
 import { SubmitButton } from "../Components/SubmitButton"
 
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 export function EditorPage({lesson, userData, setUserData}) {
@@ -36,11 +36,26 @@ export function EditorPage({lesson, userData, setUserData}) {
         );
   }
 
+  function loadLesson() {
+    const BRIDGE_URL = 'https://bizlearn-backend.onrender.com';
+    if (userData.courses_enrolled[0].lessons_completed.some(l => l.id == lesson.id)) {
+      const userLesson = userData.courses_enrolled[0].lessons_completed.find(l => String(l.id) === String(lesson.id));
+      setHTML(userLesson.saved_html);
+      setCSS(userLesson.saved_css);
+      setJS(userLesson.saved_js);
+      console.log(userLesson.saved_html);
+    }
+  }
+
+  useEffect(() => {
+    loadLesson()
+  }, [userData])
+
   return (
     <div style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
         <div style={{display: "flex", justifyContent: "space-between", width: "74.5rem", margin: "0.5rem"}}>
             <p className={"page_title"} >{lesson.title}</p>
-            <BackButton />
+            <BackButton prev_url={"/course/zero-to-fullstack-bootcamp"} />
         </div>
         <DevEnvironment inputHTML={html} inputCSS={css} inputJS={js} setHTML={setHTML} setCSS={setCSS} setJS={setJS} email={userData.email} />
         <div style={{display: "flex", justifyContent: "space-between", width: "75rem"}}>

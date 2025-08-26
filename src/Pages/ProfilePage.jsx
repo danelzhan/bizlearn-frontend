@@ -14,11 +14,14 @@ export function ProfilePage ({user, userData, setUserData}) {
 
     return (
         userData ? 
-        <div>
-            <h2>{userData.name}</h2>
-            <p>{userData.email}</p>
-            <p>{userData ? userData.points : ""}</p>
-            <LogoutButton />
+        <div style={{display: "flex", alignItems: "center", justifyContent: "center", height: "80vh"}}>
+            <div>
+                <h2>{userData.name}</h2>
+                <p>{userData.email}</p>
+                <p>{userData ? userData.points : ""}</p>
+                <LogoutButton />
+            </div>
+
         </div> :
         <p>loading...</p>
     );

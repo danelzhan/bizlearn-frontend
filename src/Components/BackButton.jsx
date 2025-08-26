@@ -9,6 +9,7 @@ export function BackButton({prev_url}) {
     const back = () => {
         if (prev_url) {
             navigate(prev_url)
+            return
         }
         if (window.history.length > 1) navigate(-1);
         else navigate(fallback, { replace: true });
