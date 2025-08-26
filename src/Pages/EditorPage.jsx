@@ -44,6 +44,13 @@ export function EditorPage({lesson, userData, setUserData}) {
       setCSS(userLesson.saved_css);
       setJS(userLesson.saved_js);
       console.log(userLesson.saved_html);
+    } else if (userData.courses_enrolled[0].lessons_completed.some(l => l.saved_html)) {
+      const prevInteractive = userData.courses_enrolled[0].lessons_completed
+        .filter(l => l.saved_html && Number(l.id) < Number(lesson.id))
+        .sort((a, b) => Number(b.id) - Number(a.id))[0];
+      setHTML(prevInteractive.saved_html);
+      setCSS(prevInteractive.saved_css);
+      setJS(prevInteractive.saved_js);
     }
   }
 

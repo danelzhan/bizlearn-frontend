@@ -34,17 +34,6 @@ export function DevEnvironment({ inputHTML, inputCSS, inputJS, setHTML, setCSS, 
     </html>
   `;
 
-  const saveCode = async (html, css, js) => {
-    await fetch(
-      `${BRIDGE_URL}/api/users/${email}/courses/zero-to-fullstack-bootcamp/code`,
-      {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ html, css, js })
-      }
-    );
-  };
-
   useEffect(() => {
     const timeout = setTimeout(() => {
           setLoading(true)

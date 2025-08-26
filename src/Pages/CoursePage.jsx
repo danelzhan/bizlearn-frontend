@@ -1,7 +1,6 @@
 import { ProgressBar } from "../Components/ProgressBar"
 import { LessonPanel } from "../Components/LessonPanel"
 import { BackButton } from "../Components/BackButton"
-import { fetchCourseBySlug } from "../Bridge";
 
 import { useParams, Link} from "react-router-dom";
 import { useEffect, useState } from "react";

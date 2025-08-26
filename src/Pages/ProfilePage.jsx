@@ -18,7 +18,7 @@ export function ProfilePage ({user, userData, setUserData}) {
             <div>
                 <h2>{userData.name}</h2>
                 <p>{userData.email}</p>
-                <p>{userData ? userData.points : ""}</p>
+                <p>{userData.points}</p>
                 <LogoutButton />
             </div>
 

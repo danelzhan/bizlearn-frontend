@@ -16,9 +16,9 @@ export function VideoPage({lesson, userData, setUserData}) {
         if (userData.courses_enrolled[0].lessons_completed.some(l => l.id == lesson.id)) {
             return;
         }   
-        const newLesson = {
-            id: `${lesson.id}`,
-        };
+            const newLesson = {
+                id: `${lesson.id}`,
+            };
         userData.courses_enrolled[0].lessons_completed.push(newLesson);
         setUserData(userData)
         console.log(userData)
@@ -47,7 +47,7 @@ export function VideoPage({lesson, userData, setUserData}) {
             
             <div style={{display: "flex", justifyContent: "space-between", width: "78rem"}}>
                 <div />
-                <button onClick={submitLesson}><SubmitButton label={"Next"} /></ button>
+                <button onClick={submitLesson}><SubmitButton label={"Next"} /></ button>    
             </div>
         </div>
 
