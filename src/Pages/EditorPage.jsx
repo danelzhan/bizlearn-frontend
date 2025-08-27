@@ -1,6 +1,7 @@
 import { DevEnvironment } from "../Components/DevEnvironment"
 import { BackButton } from "../Components/BackButton"
 import { SubmitButton } from "../Components/SubmitButton"
+import { DownloadCodeButton } from "../Components/DownloadProjectButton";
 
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -69,6 +70,7 @@ export function EditorPage({lesson, userData, setUserData}) {
         <div style={{display: "flex", justifyContent: "space-between", width: "75rem"}}>
           <div />
           <button onClick={submitLesson}><SubmitButton label={"Submit"} /></button>
+          <DownloadCodeButton email={userData.email} id={lesson.id} />
         </div>
     </div>
 

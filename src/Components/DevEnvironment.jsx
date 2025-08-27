@@ -3,7 +3,7 @@ import Editor from "@monaco-editor/react";
 
 
 
-export function DevEnvironment({ inputHTML, inputCSS, inputJS, setHTML, setCSS, setJS, email }) {
+export function DevEnvironment({ inputHTML, inputCSS, inputJS, setHTML, setCSS, setJS, download }) {
 
   const BRIDGE_URL = 'https://bizlearn-backend.onrender.com';
 
@@ -20,6 +20,7 @@ export function DevEnvironment({ inputHTML, inputCSS, inputJS, setHTML, setCSS, 
   
 
   const backgroundColor = "#172037";
+
 
   const generateSrcDoc = () => `
     <!DOCTYPE html>
