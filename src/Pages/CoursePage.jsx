@@ -36,7 +36,9 @@ export function CoursePage({percentage, userData, setUserData}) {
                     {course.lessons.map((lesson, index) => (
                         userData.courses_enrolled[0].lessons_completed.some(l => l.id == lesson.id) ?
                         <Link key={index} to={`/course/${slug}/lesson/${lesson.id}`}><LessonPanel title={lesson.title} description={lesson.description} completed={true} /></Link> :
-                        <Link key={index} to={`/course/${slug}/lesson/${lesson.id}`}><LessonPanel title={lesson.title} description={lesson.description} completed={false} /></Link>
+                            userData.courses_enrolled[0].lessons_completed.some(l => Number(l.unit) == Number(lesson.unit) - 1) || lesson.unit == 1 ?
+                            <Link key={index} to={`/course/${slug}/lesson/${lesson.id}`}><LessonPanel title={lesson.title} description={lesson.description} /></Link> :
+                            <LessonPanel key={index} title={lesson.title} description={lesson.description} locked={true} /> 
                     ))}
                 </div>
             </div>

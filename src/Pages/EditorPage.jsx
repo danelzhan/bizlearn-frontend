@@ -21,7 +21,8 @@ export function EditorPage({lesson, userData, setUserData}) {
             id: `${lesson.id}`,
             saved_html: `${html}`,
             saved_css: `${css}`,
-            saved_js: `${js}`
+            saved_js: `${js}`,
+            unit: `${lesson.unit}`
         };
         userData.courses_enrolled[0].lessons_completed.push(newLesson);
         setUserData(userData)
@@ -73,3 +74,5 @@ export function EditorPage({lesson, userData, setUserData}) {
 
   )
 }
+//ensures client poos
+{console.log("poo");} 
