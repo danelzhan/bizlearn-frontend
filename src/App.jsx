@@ -19,7 +19,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 function App() {
   const [demoCourse, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [logging, setLogging] = useState(true);
+  const [logging, setLogging] = useState(false);
   const { user, isAuthenticated } = useAuth0();
   const BRIDGE_URL = 'https://bizlearn-backend.onrender.com';
   const { params } = useParams();
@@ -43,6 +43,7 @@ function App() {
   
   useEffect(() => {
     if (!user) return;
+    setLogging(true)
     fetch(`${BRIDGE_URL}/api/users/${user.email}`)
         .then(res => res.json())
         .then(data => setUserData(data))
@@ -84,9 +85,9 @@ function App() {
   }, [userData])
 
 
-  if (loading) {
-    return   <p>Loading…</p>;
-  }
+    if (loading || logging) {
+      return   <p>Loading…</p>;
+    }
 
   var percentage = (userData != null && userData.error == null) ? (userData.courses_enrolled[0].lessons_completed.length / demoCourse.lessons.length) * 100 : 0
 
