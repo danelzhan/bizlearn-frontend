@@ -19,6 +19,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 function App() {
   const [demoCourse, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [logging, setLogging] = useState(true);
   const { user, isAuthenticated } = useAuth0();
   const BRIDGE_URL = 'https://bizlearn-backend.onrender.com';
   const { params } = useParams();
@@ -51,6 +52,7 @@ function App() {
     console.log(userData)
     if (!userData) return;
     if (userData.error == "Not found") {
+      setLogging(true)
       const user_data = {
         email: `${user.email}`,
         name: `${user.name}`,
@@ -63,21 +65,27 @@ function App() {
         ]
       };
 
-      fetch(`${BRIDGE_URL}/api/users`, {
+      fetch(`${BRIDGE_URL}/api/users`, {              
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(user_data)
       })
+      .then(fetch(`${BRIDGE_URL}/api/users/${user.email}`)
+        .then(res => res.json())
+        .then(data => setUserData(data)))
+        .then(setLogging(false))
       
+    } else {
+      setLogging(false)
     }
 
   }, [userData])
 
 
   if (loading) {
-    return <p>Loading…</p>;
+    return   <p>Loading…</p>;
   }
 
   var percentage = (userData != null && userData.error == null) ? (userData.courses_enrolled[0].lessons_completed.length / demoCourse.lessons.length) * 100 : 0
